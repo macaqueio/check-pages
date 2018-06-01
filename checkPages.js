@@ -258,8 +258,8 @@ module.exports = function(host, options, done) {
             // Check the page's links for validity (i.e., HTTP HEAD returns OK)
             var $ = cheerio.load(body);
             var index = 0;
-            ['a href', 'area href', 'audio src', 'embed src', 'iframe src', 'img src',
-              'img srcset', 'input src', 'link href', 'object data', 'script src',
+            ['a href', 'area href', 'audio src', 'embed src', 'iframe src', 'amp-img src',
+              'amp-img srcset', 'input src', 'link href', 'object data', 'script src',
               'source src', 'source srcset', 'track src', 'video src', 'video poster']
               .forEach(function(pair) {
                 var items = pair.split(' ');
