@@ -384,6 +384,7 @@ module.exports = function(host, options, done) {
   // Set request defaults
   var defaults = {
     gzip: true,
+    timeout: 1000,
     headers: {
       // Prevent caching so response time will be accurate
       'Cache-Control': 'no-cache',
