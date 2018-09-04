@@ -142,7 +142,8 @@ module.exports = function(host, options, done) {
       var useGetRequest = retryWithGet || options.queryHashes;
       var req = requestFor(link)(normalizeUri(link), {
         method: useGetRequest ? 'GET' : 'HEAD',
-        followRedirect: !options.noRedirects
+        followRedirect: !options.noRedirects,
+        timeout: 1000
       })
         .on('error', function(err) {
           if (!trySecure) {
@@ -278,6 +279,7 @@ module.exports = function(host, options, done) {
             // Check the page's response time
             if (options.maxResponseTime < elapsed) {
               logPageError('Page response took more than ' + options.maxResponseTime + 'ms to complete');
+
             }
           }
           if (options.checkCaching) {
