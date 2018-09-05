@@ -180,15 +180,11 @@ module.exports = function(host, options, done) {
               return;
             }
           } else if (useGetRequest && !trySecure) {
-            if (((300 <= res.statusCode) && (res.statusCode < 400)) && options.noRedirects) {
+            if (((300 <= res.statusCode) && (res.statusCode < 400)) && options.noRedirects ) {
               logPageError('Redirected link (' + res.statusCode + '): ' + link + ' -> ' + (res.headers.location || '[Missing Location header]') + ' (' + elapsed + 'ms)');
             } else {
               logPageError('Bad link (' + res.statusCode + '): ' + link + ' (' + elapsed + 'ms)');
             }
-          } else {
-            // Retry HEAD request as GET to be sure
-            testLink(page, link, true, trySecure)(callback);
-            return;
           }
           callback();
         });
