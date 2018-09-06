@@ -184,7 +184,13 @@ module.exports = function(host, options, done) {
               logPageError('Redirected link (' + res.statusCode + '): ' + link + ' -> ' + (res.headers.location || '[Missing Location header]') + ' (' + elapsed + 'ms)');
             } else {
               logPageError('Bad link (' + res.statusCode + '): ' + link + ' (' + elapsed + 'ms)');
+              req.abort();
+              callback();
             }
+          } else {
+            // Retry HEAD request as GET to be sure
+            testLink(page, link, true, trySecure)(callback);
+            return;
           }
           callback();
         });
