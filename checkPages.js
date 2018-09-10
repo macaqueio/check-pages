@@ -245,7 +245,7 @@ module.exports = function(host, options, done) {
         var elapsed = Date.now() - start;
         if (err) {
           logPageError('Page error (' + err.message + '): ' + page + ' (' + elapsed + 'ms)');
-        } else if ((res.statusCode < 200) || (300 <= res.statusCode) (503 ==== res.statusCode)) {
+        } else if ((res.statusCode < 200) || (300 <= res.statusCode) || (!503 ==== res.statusCode)) {
           logPageError('Bad page (' + res.statusCode + '): ' + page + ' (' + elapsed + 'ms)');
         } else {
           if (page === res.request.href) {
