@@ -180,7 +180,7 @@ module.exports = function(host, options, done) {
               return;
             }
           } else if (useGetRequest && !trySecure) {
-            if (((300 <= res.statusCode) && (res.statusCode < 400)) && options.noRedirects ) {
+            if (((300 <= res.statusCode) && (res.statusCode < 400)) && options.noRedirects) {
               logPageError('Redirected link (' + res.statusCode + '): ' + link + ' -> ' + (res.headers.location || '[Missing Location header]') + ' (' + elapsed + 'ms)');
             } else {
               logPageError('Bad link (' + res.statusCode + '): ' + link + ' (' + elapsed + 'ms)');
@@ -245,7 +245,7 @@ module.exports = function(host, options, done) {
         var elapsed = Date.now() - start;
         if (err) {
           logPageError('Page error (' + err.message + '): ' + page + ' (' + elapsed + 'ms)');
-        } else if ((res.statusCode < 200) || (300 <= res.statusCode) || (!503 ==== res.statusCode)) {
+        } else if ((res.statusCode < 200) || (300 <= res.statusCode)) {
           logPageError('Bad page (' + res.statusCode + '): ' + page + ' (' + elapsed + 'ms)');
         } else {
           if (page === res.request.href) {
