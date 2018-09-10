@@ -184,8 +184,6 @@ module.exports = function(host, options, done) {
               logPageError('Redirected link (' + res.statusCode + '): ' + link + ' -> ' + (res.headers.location || '[Missing Location header]') + ' (' + elapsed + 'ms)');
             } else {
               logPageError('Bad link (' + res.statusCode + '): ' + link + ' (' + elapsed + 'ms)');
-              req.abort();
-              callback();
             }
           } else {
             // Retry HEAD request as GET to be sure
@@ -247,7 +245,7 @@ module.exports = function(host, options, done) {
         var elapsed = Date.now() - start;
         if (err) {
           logPageError('Page error (' + err.message + '): ' + page + ' (' + elapsed + 'ms)');
-        } else if ((res.statusCode < 200) || (300 <= res.statusCode)) {
+        } else if ((res.statusCode < 200) || (300 <= res.statusCode) (503 ==== res.statusCode)) {
           logPageError('Bad page (' + res.statusCode + '): ' + page + ' (' + elapsed + 'ms)');
         } else {
           if (page === res.request.href) {
