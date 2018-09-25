@@ -143,7 +143,7 @@ module.exports = function(host, options, done) {
       var req = requestFor(link)(normalizeUri(link), {
         method: useGetRequest ? 'GET' : 'HEAD',
         followRedirect: !options.noRedirects,
-        timeout: 10000
+        timeout: 12000
       })
         .on('error', function(err) {
           if (!trySecure) {
@@ -384,7 +384,7 @@ module.exports = function(host, options, done) {
   // Set request defaults
   var defaults = {
     gzip: true,
-    timeout: 10000,
+    timeout: 12000,
     headers: {
       // Prevent caching so response time will be accurate
       'Cache-Control': 'no-cache',
